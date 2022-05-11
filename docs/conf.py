@@ -24,7 +24,7 @@ DOCS_DIR = Path(__file__).parent.resolve()
 # importable path.
 
 # The full version, including alpha/beta/rc tags
-release = pkg_resources.get_distribution("catalystcoop.cheshire").version
+release = pkg_resources.get_distribution("intake-sqlite").version
 
 # -- Project information -----------------------------------------------------
 
@@ -54,7 +54,7 @@ todo_include_todos = True
 # Automatically generate API documentation during the doc build:
 autoapi_type = "python"
 autoapi_dirs = [
-    "../src/cheshire",
+    "../src/intake_sqlite",
 ]
 autoapi_ignore = [
     "*_test.py",
@@ -62,7 +62,7 @@ autoapi_ignore = [
 ]
 
 # GitHub repo
-issues_github_path = "catalyst-cooperative/cheshire"
+issues_github_path = "catalyst-cooperative/intake-sqlite"
 
 # In order to be able to link directly to documentation for other projects,
 # we need to define these package to URL mappings:

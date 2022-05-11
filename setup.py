@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-"""Setup script to make Cheshire installable with pip."""
+"""Setup script to make Intake SQLite installable with pip."""
 
 from pathlib import Path
 
@@ -10,9 +10,8 @@ long_description = readme_path.read_text()
 
 
 setup(
-    # This should be the *installed* package name e.g. catalystcoop.pudl not pudl
-    name="catalystcoop.cheshire",
-    description="A one line description of the package.",
+    name="intake-sqlite",
+    description="An Intake driver to access local or remote SQLite databases by URL.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     # setuptools_scm lets us automagically get package version from GitHub tags
@@ -20,23 +19,26 @@ setup(
     use_scm_version=True,
     author="Catalyst Cooperative",
     author_email="pudl@catalyst.coop",
-    maintainer="Chesire Cat",
-    maintainer_email="pudl@catalyst.coop",
-    url="",  # Can be repo or docs URL if no separate web page exists.
+    maintainer="Zane Selvans",
+    maintainer_email="zane.selvans@catalyst.coop",
+    url="https://github.com/catalyst-cooperative/intake-sqlite",
     project_urls={
-        "Source": "https://github.com/catalyst-cooperative/cheshire",
-        "Documentation": "https://catalystcoop-cheshire.readthedocs.io",
-        "Issue Tracker": "https://github.com/catalyst-cooperative/cheshire/issues",
+        "Source": "https://github.com/catalyst-cooperative/intake-sqlite",
+        "Documentation": "https://intake-sqlite.readthedocs.io",
+        "Issue Tracker": "https://github.com/catalyst-cooperative/intake-sqlite/issues",
     },
     license="MIT",
     # Fill in search keywords that users might use to find the package
-    keywords=[],
+    keywords=["intake", "sqlite", "data catalog"],
     python_requires=">=3.8,<3.11",
     # In order for the dependabot to update versions, they must be listed here.
     # Use the format pkg_name>=x,<y", Included packages are just examples:
     install_requires=[
-        "pandas>=1.4,<1.5",
-        "sqlalchemy>=1.4,<2",
+        "intake",
+        "intake_sql",
+        "fsspec",
+        "pandas",
+        "sqlalchemy",
     ],
     extras_require={
         "dev": [
@@ -104,9 +106,9 @@ setup(
     # entry_points defines interfaces to command line scripts we distribute.
     # Can also be used for other resource deployments, like intake catalogs.
     entry_points={
-        "console_scripts": [
-            # "script_name = dotted.module.path.to:main_script_function",
-            "winston = cheshire.cli:main",
+        "intake.drivers": [
+            "sqlite = intake_sqlite.intake_sqlite:SQLiteSource",
+            "sqlite_cat = intake_sqlite.sqlite_cat:SQLiteCatalog",
         ]
     },
 )
