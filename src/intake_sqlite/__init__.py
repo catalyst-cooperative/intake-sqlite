@@ -15,9 +15,6 @@ __maintainer_email__ = "zane.selvans@catalyst.coop"
 __license__ = "MIT License"
 __docformat__ = "restructuredtext en"
 __description__ = "An Intake driver to access local or remote SQLite databases by URL."
-__long_description__ = """
-This should be a paragraph long description of what the package does.
-"""
 __projecturl__ = "https://github.com/catalyst-cooperative/intake-sqlite"
 __downloadurl__ = "https://github.com/catalyst-cooperative/intake-sqlite"
 
