@@ -32,13 +32,13 @@ setup(
     keywords=["intake", "sqlite", "data catalog"],
     python_requires=">=3.8,<3.11",
     # In order for the dependabot to update versions, they must be listed here.
-    # Use the format pkg_name>=x,<y", Included packages are just examples:
+    # Use the format "pkg_name>=x,<y"
     install_requires=[
-        "intake",
-        "intake_sql",
-        "fsspec",
-        "pandas",
-        "sqlalchemy",
+        "intake<=0.6.5",
+        "intake_sql<=0.3.1",
+        "fsspec<=2022.3.0",
+        "pandas<=1.4.2",
+        "sqlalchemy<=1.4.36",
     ],
     extras_require={
         "dev": [
@@ -65,14 +65,13 @@ setup(
             "flake8-docstrings>=1.5,<2",  # Ensure docstrings are formatted well
             "flake8-rst-docstrings>=0.2,<0.3",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1,<2",  # Highlight use of old-style string formatting
-            "fsspec[gs,http]",  # Extras required for our specific test cases.
+            "fsspec[http]",  # Extras required for our specific test cases.
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "mypy>=0.942",  # Static type checking
             "pep8-naming>=0.12,<0.13",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<3",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<7",  # Style guidelines for Python documentation
             "pytest>=6.2,<8",  # Our testing framework
-            "pytest-console-scripts>=1.1,<2",  # Allow automatic testing of scripts
             "pytest-cov>=2.10,<4.0",  # Pytest plugin for working with coverage
             "rstcheck>=5,<6",  # ReStructuredText linter
             "tox>=3.20,<4",  # Python test environment manager
