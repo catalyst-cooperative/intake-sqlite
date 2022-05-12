@@ -1,41 +1,30 @@
 =======================================================================================
-PACKAGE_NAME Release Notes
+Intake SQLite Release Notes
 =======================================================================================
-
-.. _release-v0-2-0:
-
----------------------------------------------------------------------------------------
-0.2.0 (2022-XX-XX)
----------------------------------------------------------------------------------------
-
-What's New?
-^^^^^^^^^^^
-* Briefly describe the substantial changes to the code in here when you make a PR.
-* That way and users we have documentation as to what's going on.
-* You can refer to the relevant pull request using the ``pr`` role: :pr:`1`
-* Don't hesitate to give shoutouts to folks who contributed like :user:`cmgosnell`
-* You can link to issues that were closed like this: :issue:`2,3,4`
-
-Bug Fixes
-^^^^^^^^^
-* It's good to make a note of any known bugs that are fixed by the release, and refer
-  to the relevant issues.
-
-Known Issues
-^^^^^^^^^^^^
-* It's also good to list any remaining known problems, and link to their issues too.
 
 .. _release-v0-1-0:
 
 ---------------------------------------------------------------------------------------
-0.1.0 (2022-04-29)
+0.1.0 (2022-05-XX)
 ---------------------------------------------------------------------------------------
 
 What's New?
 ^^^^^^^^^^^
-* This is the first fully functional and documented version of our template repository.
+This is a first draft of an :mod:`intake` data catalog driver for SQLite databases.  It
+wraps the more general :mod:`intake_sql` driver and allows remote SQLite databases to be
+transparently downloaded and cached locally using :mod:`fsspec`. Used in conjunction
+with cloud object storage or other durable network storage with well defined versions
+encoded in the URL, it will facilitate distribution of read-only, file-based, versioned
+relational databases.
 
 Known Issues
 ^^^^^^^^^^^^
-* Need to get some user feedback!
-* Still need to look at updating our Code of Conduct. See :issue:`12`
+* Code is currently based on the most recent version of :mod:`intake_sql` repository,
+  which hasn't yet been published as a release.
+* We need more example use cases in the README.
+* Note that you'll need to install filesystem specific extras, or :mod:`fsspec` won't
+  know how to work with them.
+* Use of the ``simplecache::`` method is currently hard-coded. Is this appropriate?
+* Additional test cases are required to exercise the
+  :class:`intake_sqlite.SQLiteSourceManualPartition` and
+  :class:`intake_sqlite.SQLiteSourceAutoPartition` classes.

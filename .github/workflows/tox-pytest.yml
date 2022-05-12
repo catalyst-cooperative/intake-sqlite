@@ -25,7 +25,7 @@ jobs:
         channels: conda-forge,defaults
         channel-priority: true
         python-version: ${{ matrix.python-version }}
-        activate-environment: cheshire
+        activate-environment: intake-sqlite
         environment-file: environment.yml
     - shell: bash -l {0}
       run: |
@@ -37,10 +37,12 @@ jobs:
 
     - name: Run PyTest with Tox
       run: |
-        conda run -n cheshire tox
+        conda run -n intake-sqlite tox
 
     - name: Upload test coverage report to CodeCov
       uses: codecov/codecov-action@v3
+      env:
+        CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
     - name: Inform the Codemonkeys
       uses: 8398a7/action-slack@v3
@@ -60,4 +62,4 @@ jobs:
         GITHUB_TOKEN: ${{ github.token }} # required
         SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
         MATRIX_CONTEXT: ${{ toJson(matrix) }} # required
-      if: ${{ always() && github.actor != 'dependabot[bot]' }}
+      if: ${{ always() }}

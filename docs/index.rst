@@ -1,5 +1,5 @@
 ===============================================================================
-The Catalyst Python Project Template
+SQLite Driver for Intake Data Catalogs
 ===============================================================================
 
 .. include:: ../README.rst
