@@ -1,4 +1,4 @@
-graft src/package_name/package_data
+graft src/intake_sqlite/package_data
 
 prune .github
 prune tests/data
