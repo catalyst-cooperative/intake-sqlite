@@ -107,7 +107,9 @@ setup(
     # Can also be used for other resource deployments, like intake catalogs.
     entry_points={
         "intake.drivers": [
-            "sqlite = intake_sqlite.intake_sqlite:SQLiteSource",
+            "sqlite = intake_sqlite.sqlite_src:SQLiteSource",
+            "sqlite_auto = intake_sqlite.sqlite_src:SQLiteSourceAutoPartition",
+            "sqlite_manual = intake_sqlite.sqlite_src:SQLiteSourceManualPartition",
             "sqlite_cat = intake_sqlite.sqlite_cat:SQLiteCatalog",
         ]
     },
