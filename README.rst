@@ -89,8 +89,9 @@ For local paths, it resolves the path and prepends ``sqlite://`` before handing 
 to ``intake-sql`` to do all the hard work.
 
 For remote URLs it uses `fsspec <https://filesystem-spec.readthedocs.io/en/latest/>`__
-to cache a local copy of the database, and then gives ``intake-sql`` a database URL that
-points to the cached copy.
+to `cache a local copy <https://filesystem-spec.readthedocs.io/en/latest/features.html?highlight=simplecache#caching-files-locally>`__
+of the database, and then gives ``intake-sql`` a database URL that points to the cached
+copy.
 
 .. code:: python
 
