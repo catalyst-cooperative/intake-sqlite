@@ -48,22 +48,22 @@ def temp_db(
     """Create a temporary SQLite DB for use in testing."""
     urlpath = Path(tempfile.mkstemp(suffix=".db")[1])
     engine = sa.create_engine(f"sqlite:///{urlpath}")
-    con = engine.connect()
-    con.execute(
-        """CREATE TABLE temp (
-        pk BIGINT PRIMARY KEY,
-        a REAL NOT NULL,
-        b BIGINT NOT NULL,
-        c TEXT NOT NULL);"""
-    )
-    con.execute(
-        """CREATE TABLE temp2 (
-        d REAL NOT NULL,
-        e BIGINT NOT NULL,
-        f TEXT NOT NULL);"""
-    )
-    df1.to_sql("temp", con=engine, if_exists="append")
-    df2.to_sql("temp_nopk", con=engine, if_exists="append", index=False)
+    with engine.connect() as con:
+        con.execute(
+            """CREATE TABLE temp (
+            pk BIGINT PRIMARY KEY,
+            a REAL NOT NULL,
+            b BIGINT NOT NULL,
+            c TEXT NOT NULL);"""
+        )
+        con.execute(
+            """CREATE TABLE temp_nopk (
+            d REAL NOT NULL,
+            e BIGINT NOT NULL,
+            f TEXT NOT NULL);"""
+        )
+        df1.to_sql("temp", con=con, if_exists="append")
+        df2.to_sql("temp_nopk", con=con, if_exists="append", index=False)
     try:
         yield "temp", "temp_nopk", str(urlpath)
     finally:
