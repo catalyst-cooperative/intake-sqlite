@@ -4,6 +4,7 @@ from __future__ import annotations
 import logging
 from pathlib import Path
 from typing import Any
+from urllib.parse import urlparse
 
 import fsspec
 from intake_sql import SQLSource, SQLSourceAutoPartition, SQLSourceManualPartition
@@ -144,14 +145,24 @@ class SQLiteSourceManualPartition(SQLSourceManualPartition):  # type: ignore
 
 def urlpath_to_sqliteurl(urlpath: str, open_kwargs: dict[str, Any] = {}) -> str:
     """Transform a file path or URL into a local SQLite URL."""
-    if Path(urlpath).is_file():
-        p = Path(urlpath)
-        if p.suffix not in SQLITE_SUFFIXES:
-            raise ValueError(
-                f"Expected a SQLite file ending in one of: {SQLITE_SUFFIXES} "
-                f"but got: {p.name}"
-            )
+    parsed = urlparse(urlpath)
+    p = Path(parsed.path)
+    if p.suffix not in SQLITE_SUFFIXES:
+        raise ValueError(
+            f"Expected a SQLite file path ending in one of: {SQLITE_SUFFIXES} "
+            f"but got: {p.name}"
+        )
+    if parsed.scheme != "" and parsed.scheme not in fsspec.available_protocols():
+        raise ValueError(f"URL protocol {parsed.scheme} is not supported by fsspec.")
+    if parsed.scheme == "" and not p.is_file():
+        raise ValueError(f"Local path {p} is not a file!")
+    # At this point we know that EITHER:
+    # * urlpath is a URL supported by fsspec that looks like an SQLite file OR
+    # * p is a local file that looks like an SQLite file
+    if parsed.scheme == "":
+        # Absolute path to the local SQLite DB:
         local_db_path = p.resolve()
     else:
+        # Absolute path to the locally cached SQLite DB:
         local_db_path = fsspec.open_local("simplecache::" + urlpath, **open_kwargs)
-    return "sqlite:///" + str(local_db_path)
+    return f"sqlite:///{local_db_path}"
