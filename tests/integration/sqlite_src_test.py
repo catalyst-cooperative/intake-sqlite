@@ -1,4 +1,4 @@
-"""A dummy integration test so pytest has something to do."""
+"""SQLite Intake Source integration tests."""
 from __future__ import annotations
 
 import logging

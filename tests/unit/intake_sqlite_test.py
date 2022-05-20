@@ -1,4 +1,4 @@
-"""A dummy unit test so pytest has something to do."""
+"""SQLite Intake Catalog unit tests."""
 from __future__ import annotations
 
 import logging
@@ -11,14 +11,6 @@ from intake_sqlite import urlpath_to_sqliteurl
 logger = logging.getLogger(__name__)
 
 DATA_DIR = Path(__file__).resolve().parents[1] / "data"
-
-# Tests that should pass:
-# An actual local file ending in .db
-# An actual local file ending in .sqlite
-# remote url starting with https:// ending with .db
-# remote url starting with https:// ending with .sqlite
-# remote url starting with gs:// ending with .db
-# remote url starting with gs:// ending with .sqlite
 
 BAD_FILES: list[tuple[str, type[Exception]]] = [
     ("database.wtf", ValueError),
@@ -60,9 +52,15 @@ def test_bad_urls(url: str, exc: type[Exception]) -> None:
         urlpath_to_sqliteurl(url)
 
 
-def test_urlpath_to_sqliteurl() -> None:
+def test_local_path_to_sqliteurl() -> None:
     """Test our transformation of paths/URLs into SQL Alchemy URLs."""
     expected_local_url = f"sqlite:///{DATA_DIR / 'test.db'}"
     test_db_path = DATA_DIR / "test.db"
     actual_local_url = urlpath_to_sqliteurl(str(test_db_path))
     assert actual_local_url == expected_local_url  # nosec: B101
+
+
+# Note: There's no remote URL unit test for a working input to urlpath_to_sqliteurl()
+# because it's exercised in the integration tests, and there's no way to know what the
+# local path to the cached file will be since it uses a hash (of the URL?) as the
+# filename.
