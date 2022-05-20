@@ -36,7 +36,7 @@ setup(
     install_requires=[
         "intake<=0.6.5",
         "intake_sql<=0.3.1",
-        "fsspec<=2022.3.0",
+        "fsspec<2022.6.0",
         "pandas<=1.4.2",
         "sqlalchemy<=1.4.36",
     ],
