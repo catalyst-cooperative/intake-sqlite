@@ -101,9 +101,6 @@ setup(
     packages=find_packages("src"),
     # Location of the "root" package:
     package_dir={"": "src"},
-    # package_data is data that is deployed within the python package on the
-    # user's system. setuptools will get whatever is listed in MANIFEST.in
-    include_package_data=True,
     # entry_points defines interfaces to command line scripts we distribute.
     # Can also be used for other resource deployments, like intake catalogs.
     entry_points={

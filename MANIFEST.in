@@ -1,5 +1,3 @@
-graft src/intake_sqlite/package_data
-
 prune .github
 prune tests/data
 global-exclude .gitignore __pycache__ *.py[cod] *checkpoint.ipynb
