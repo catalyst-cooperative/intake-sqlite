@@ -33,7 +33,7 @@ class SQLiteSource(SQLSource):  # type: ignore
         sql_expr: Query expression to pass to the SQLite database backend.
         sql_kwargs: Additional arguments to pass in to :func:`pandas.read_sql`.
         metadata: Arbitrary metadata dictionary associated with the data source.
-        open_kwargs: Additional arguments to pass to :func:`fsspec.open_local`
+        storage_options: Keyword arguments passed to :func:`fsspec.open_local`
 
     """
 
@@ -48,11 +48,11 @@ class SQLiteSource(SQLSource):  # type: ignore
         sql_expr: str,
         sql_kwargs: dict[str, Any] = {},
         metadata: dict[str, Any] = {},
-        open_kwargs: dict[str, Any] = {},
+        storage_options: dict[str, Any] = {},
     ):
         """Initialize the class, transforming remote URL path to a local file path."""
         super().__init__(
-            uri=urlpath_to_sqliteurl(urlpath, open_kwargs=open_kwargs),
+            uri=urlpath_to_sqliteurl(urlpath, storage_options=storage_options),
             sql_expr=sql_expr,
             sql_kwargs=sql_kwargs,
             metadata=metadata,
@@ -70,7 +70,7 @@ class SQLiteSourceAutoPartition(SQLSourceAutoPartition):  # type: ignore
             resulting dataframe.
         sql_kwargs: Additional arguments to pass to :func:`dask.dataframe.read_sql`.
         metadata: Arbitrary metadata dictionary associated with the data source.
-        open_kwargs: Additional arguments to pass to :func:`fsspec.open_local`
+        storage_options: Keyword arguments passed to :func:`fsspec.open_local`
     """
 
     name = "sqlite_auto"
@@ -85,11 +85,11 @@ class SQLiteSourceAutoPartition(SQLSourceAutoPartition):  # type: ignore
         index: str,
         sql_kwargs: dict[str, Any] = {},
         metadata: dict[str, Any] = {},
-        open_kwargs: dict[str, Any] = {},
+        storage_options: dict[str, Any] = {},
     ):
         """Initialize the class, transforming remote URL path to a local file path."""
         super().__init__(
-            uri=urlpath_to_sqliteurl(urlpath, open_kwargs=open_kwargs),
+            uri=urlpath_to_sqliteurl(urlpath, storage_options=storage_options),
             table=table,
             index=index,
             sql_kwargs=sql_kwargs,
@@ -114,7 +114,7 @@ class SQLiteSourceManualPartition(SQLSourceManualPartition):  # type: ignore
             `"WHERE index_col >= {} AND index_col < {}"`
         sql_kwargs: Additional arguments to pass to :func:`dask.dataframe.read_sql`.
         metadata: Arbitrary metadata dictionary associated with the data source.
-        open_kwargs: Additional arguments to pass to :func:`fsspec.open_local`
+        storage_options: Keyword arguments passed to :func:`fsspec.open_local`
     """
 
     name = "sqlite_manual"
@@ -130,11 +130,11 @@ class SQLiteSourceManualPartition(SQLSourceManualPartition):  # type: ignore
         where_template: str | None = None,
         sql_kwargs: dict[str, Any] = {},
         metadata: dict[str, Any] = {},
-        open_kwargs: dict[str, Any] = {},
+        storage_options: dict[str, Any] = {},
     ):
         """Initialize the class, transforming remote URL path to a local file path."""
         super().__init__(
-            uri=urlpath_to_sqliteurl(urlpath, open_kwargs=open_kwargs),
+            uri=urlpath_to_sqliteurl(urlpath, storage_options=storage_options),
             sql_expr=sql_expr,
             where_values=where_values,
             where_template=where_template,
@@ -143,7 +143,7 @@ class SQLiteSourceManualPartition(SQLSourceManualPartition):  # type: ignore
         )
 
 
-def urlpath_to_sqliteurl(urlpath: str, open_kwargs: dict[str, Any] = {}) -> str:
+def urlpath_to_sqliteurl(urlpath: str, storage_options: dict[str, Any] = {}) -> str:
     """Transform a file path or URL into a local SQLite URL."""
     parsed = urlparse(urlpath)
     p = Path(parsed.path)
@@ -164,5 +164,5 @@ def urlpath_to_sqliteurl(urlpath: str, open_kwargs: dict[str, Any] = {}) -> str:
         local_db_path = p.resolve()
     else:
         # Absolute path to the locally cached SQLite DB:
-        local_db_path = fsspec.open_local("simplecache::" + urlpath, **open_kwargs)
+        local_db_path = fsspec.open_local("simplecache::" + urlpath, **storage_options)
     return f"sqlite:///{local_db_path}"

@@ -24,12 +24,14 @@ class SQLiteCatalog(SQLCatalog):  # type: ignore
         urlpath: str,
         views: bool = False,
         sql_kwargs: str | None = None,
-        open_kwargs: dict[str, Any] = {},
+        storage_options: dict[str, Any] = {},
         **kwargs: str,
     ):
         """Initialize catalog, transforming urlpath into SQLite URL for SQL Alchemy."""
         super().__init__(
-            uri=intake_sqlite.urlpath_to_sqliteurl(urlpath, open_kwargs=open_kwargs),
+            uri=intake_sqlite.urlpath_to_sqliteurl(
+                urlpath, storage_options=storage_options
+            ),
             views=views,
             sql_kwargs=sql_kwargs,
             **kwargs,
