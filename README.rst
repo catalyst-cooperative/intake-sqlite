@@ -99,7 +99,7 @@ copy.
 
   gpp_cat = intake_sqlite.SQLiteCatalog(
       urlpath="https://global-power-plants.datasettes.com/global-power-plants.db",
-      open_kwargs={"simplecache": {"cache_storage": "/home/zane/.cache/intake"}},
+      storage_options={"simplecache": {"cache_storage": "/home/zane/.cache/intake"}},
   )
 
   list(gpp_cat)
