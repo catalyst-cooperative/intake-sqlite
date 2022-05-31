@@ -38,7 +38,7 @@ setup(
         "intake_sql<=0.3.1",
         "fsspec<2022.6.0",
         "pandas<=1.4.2",
-        "sqlalchemy<=1.4.36",
+        "sqlalchemy<1.4.38",
     ],
     extras_require={
         "dev": [
