@@ -41,15 +41,11 @@ connect to and extract data from the database. This works with just fine with
 `SQLite databases <https://www.sqlite.org/index.html>`__, but only when the database
 file is stored locally and can be referenced with a simple path.
 
-For example this path:
-
-.. code::
+For example this path::
 
   /home/zane/code/catalyst/pudl-work/sqlite/pudl.sqlite
 
-would correspond to this SQL Alchemy database URL:
-
-.. code::
+would correspond to this SQL Alchemy database URL::
 
   sqlite:///home/zane/code/catalyst/pudl-work/sqlite/pudl.sqlite
 
