@@ -34,11 +34,8 @@ setup(
     # In order for the dependabot to update versions, they must be listed here.
     # Use the format "pkg_name>=x,<y"
     install_requires=[
-        "intake<=0.6.5",
-        "intake_sql<=0.3.1",
-        "fsspec<2022.6.0",
-        "pandas<=1.4.2",
-        "sqlalchemy<1.4.38",
+        "intake_sql>=0.3.1,<0.4",
+        "fsspec>=2022.5,<2023",
     ],
     extras_require={
         "dev": [
@@ -65,15 +62,18 @@ setup(
             "flake8-rst-docstrings>=0.2,<0.3",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1,<2",  # Highlight use of old-style string formatting
             "fsspec[http]",  # Extras required for our specific test cases.
+            "intake>=0.6.5,<0.7",
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "msgpack-numpy>=0.4,<0.5",  # Required to serialize Numpy arrays
             "mypy>=0.942",  # Static type checking
+            "pandas>=1.4,<2",
             "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<3",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<7",  # Style guidelines for Python documentation
             "pytest>=6.2,<8",  # Our testing framework
             "pytest-cov>=2.10,<4.0",  # Pytest plugin for working with coverage
             "rstcheck[sphinx]>=5,<7",  # ReStructuredText linter
+            "sqlalchemy>=1.3,<2",
             "tox>=3.20,<4",  # Python test environment manager
         ],
         "types": [
