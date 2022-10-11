@@ -3,14 +3,10 @@ from __future__ import annotations
 
 import logging
 
-import intake
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
 from intake_sqlite import SQLiteCatalog
-
-# pytest imports this package last, so plugin is not auto-added
-intake.register_driver(name="sqlite_cat", driver=SQLiteCatalog)
 
 logger = logging.getLogger(__name__)
 
