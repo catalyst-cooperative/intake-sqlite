@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import logging
 
-import intake
 import pandas as pd
 from pandas.testing import assert_frame_equal
 
@@ -12,11 +11,6 @@ from intake_sqlite import (
     SQLiteSourceAutoPartition,
     SQLiteSourceManualPartition,
 )
-
-# pytest imports this package last, so plugin is not auto-added
-intake.register_driver(name="sqlite", driver=SQLiteSource)
-intake.register_driver(name="sqlite_auto", driver=SQLiteSourceAutoPartition)
-intake.register_driver(name="sqlite_manual", driver=SQLiteSourceManualPartition)
 
 logger = logging.getLogger(__name__)
 
