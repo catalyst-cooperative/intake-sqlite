@@ -30,7 +30,7 @@ setup(
     license="MIT",
     # Fill in search keywords that users might use to find the package
     keywords=["intake", "sqlite", "data catalog"],
-    python_requires=">=3.8,<3.11",
+    python_requires=">=3.8,<3.12",
     # In order for the dependabot to update versions, they must be listed here.
     # Use the format "pkg_name>=x,<y"
     install_requires=[
@@ -95,6 +95,7 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
     ],
     # Directory to search recursively for __init__.py files defining Python packages
     packages=find_packages("src"),

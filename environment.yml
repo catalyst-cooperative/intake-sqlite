@@ -5,8 +5,8 @@ channels:
 dependencies:
   # Packages required for setting up the environment
   - pip>=21,<23
-  - python>=3.8,<3.11
-  - setuptools<62
+  - python>=3.8,<3.12
+  - setuptools<66
 
   # Use pip to install the package defined by this repo for development:
   - pip:
