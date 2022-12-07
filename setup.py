@@ -41,7 +41,7 @@ setup(
         "dev": [
             "black>=22,<23",  # A deterministic code formatter
             "isort>=5,<6",  # Standardized import sorting
-            "tox>=3.20,<4",  # Python test environment manager
+            "tox>=3.20,<5",  # Python test environment manager
             "twine>=3.3,<5.0",  # Used to make releases to PyPI
         ],
         "docs": [
@@ -74,7 +74,7 @@ setup(
             "pytest-cov>=2.10,<5.0",  # Pytest plugin for working with coverage
             "rstcheck[sphinx]>=5,<7",  # ReStructuredText linter
             "sqlalchemy>=1.3,<2",
-            "tox>=3.20,<4",  # Python test environment manager
+            "tox>=3.20,<5",  # Python test environment manager
         ],
         "types": [
             "types-setuptools",
