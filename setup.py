@@ -35,7 +35,7 @@ setup(
     # Use the format "pkg_name>=x,<y"
     install_requires=[
         "intake_sql>=0.3.1,<0.4",
-        "fsspec>=2022.5,<2023",
+        "fsspec>=2022.5,<2024",
     ],
     extras_require={
         "dev": [
