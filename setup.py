@@ -68,7 +68,7 @@ setup(
             "mypy>=0.942",  # Static type checking
             "pandas>=1.4,<2",
             "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
-            "pre-commit>=2.9,<3",  # Allow us to run pre-commit hooks in testing
+            "pre-commit>=2.9,<4",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<7",  # Style guidelines for Python documentation
             "pytest>=6.2,<8",  # Our testing framework
             "pytest-cov>=2.10,<5.0",  # Pytest plugin for working with coverage
