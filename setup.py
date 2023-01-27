@@ -73,7 +73,7 @@ setup(
             "pytest>=6.2,<8",  # Our testing framework
             "pytest-cov>=2.10,<5.0",  # Pytest plugin for working with coverage
             "rstcheck[sphinx]>=5,<7",  # ReStructuredText linter
-            "sqlalchemy>=1.3,<2",
+            "sqlalchemy>=1.3,<3",
             "tox>=3.20,<5",  # Python test environment manager
         ],
         "types": [
