@@ -66,7 +66,7 @@ setup(
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "msgpack-numpy>=0.4,<0.5",  # Required to serialize Numpy arrays
             "mypy>=0.942",  # Static type checking
-            "pandas>=1.4,<2",
+            "pandas>=1.4,<3",
             "pep8-naming>=0.12,<0.14",  # Require PEP8 compliant variable names
             "pre-commit>=2.9,<4",  # Allow us to run pre-commit hooks in testing
             "pydocstyle>=5.1,<7",  # Style guidelines for Python documentation
