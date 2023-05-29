@@ -62,7 +62,7 @@ setup(
             "flake8-rst-docstrings>=0.2,<0.4",  # Allow use of ReST in docstrings
             "flake8-use-fstring>=1,<2",  # Highlight use of old-style string formatting
             "fsspec[http]",  # Extras required for our specific test cases.
-            "intake>=0.6.5,<0.7",
+            "intake>=0.6.5,<0.8",
             "mccabe>=0.6,<0.8",  # Checks that code isn't overly complicated
             "msgpack-numpy>=0.4,<0.5",  # Required to serialize Numpy arrays
             "mypy>=0.942",  # Static type checking
