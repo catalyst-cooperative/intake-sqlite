@@ -40,7 +40,7 @@ jobs:
           conda run -n intake-sqlite tox
 
       - name: Upload test coverage report to CodeCov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
