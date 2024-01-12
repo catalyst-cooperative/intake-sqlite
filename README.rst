@@ -1,3 +1,11 @@
+REPO IS ARCHIVED
+=======================================================================================
+After experimenting for a while, we ultimately decided not to use Intake catalogs to
+distribute our data, so this repository is no longer maintained.
+
+See `PUDL Data Access <https://catalystcoop-pudl.readthedocs.io/en/nightly/data_access.html>`__
+for more information on how to access the data we publish.
+
 SQLite Driver for Intake Data Catalogs
 =======================================================================================
 
